@@ -14,7 +14,7 @@ import rx.Observable;
  * @date 2017/12/27
  */
 
-public interface  _Api {
+public interface Service {
     @GET("v1/")
     Observable<NeiHanBean> get(@QueryMap Map<String,String> map);
 }

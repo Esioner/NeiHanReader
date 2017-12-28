@@ -12,6 +12,7 @@ import com.esioner.neihanreader.R;
 import com.esioner.neihanreader.bean.neiHanBean.NeiHanBean;
 import com.esioner.neihanreader.bean.neiHanBean.NeiHanDataBean;
 import com.esioner.neihanreader.bean.neiHanBean.NeiHanGroupBean;
+import com.esioner.neihanreader.view.LikeShareView;
 
 import java.util.List;
 
@@ -22,24 +23,29 @@ import de.hdodenhof.circleimageview.CircleImageView;
  * @date 2017/12/27
  */
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements LikeShareView.ViewOnClickListener {
     private List<NeiHanDataBean> neiHanBeans;
 
     public RecyclerViewAdapter(List<NeiHanDataBean> neiHanBeans) {
         this.neiHanBeans = neiHanBeans;
     }
 
-    public class JokeViewHolder extends RecyclerView.ViewHolder {
 
+    /**
+     * 段子 viewHolder
+     */
+    public class JokeViewHolder extends RecyclerView.ViewHolder {
         private CircleImageView ivAuthorHeader;
         private TextView tvAuthorName;
         private TextView tvAuthorContent;
+        private final LikeShareView likeShareBar;
 
         public JokeViewHolder(View itemView) {
             super(itemView);
             ivAuthorHeader = itemView.findViewById(R.id.iv_joke_author_header_image);
             tvAuthorName = itemView.findViewById(R.id.tv_joke_author_name);
             tvAuthorContent = itemView.findViewById(R.id.tv_joke_author_content);
+            likeShareBar = itemView.findViewById(R.id.like_share_bar);
         }
     }
 
@@ -55,14 +61,28 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         NeiHanDataBean dataBean = neiHanBeans.get(position);
         if (holder instanceof JokeViewHolder) {
             JokeViewHolder jokeHolder = (JokeViewHolder) holder;
+            //设置用户头像
             Glide.with(MyApplication.getContext()).load(dataBean.getGroup().getUserInfo().getAvatarUrl()).into(jokeHolder.ivAuthorHeader);
+            //设置用户名
             jokeHolder.tvAuthorName.setText(dataBean.getGroup().getUserInfo().getName());
+//            设置用户内容
             jokeHolder.tvAuthorContent.setText(dataBean.getGroup().getText());
+//            设置顶数
+            jokeHolder.likeShareBar.setLikeCount(dataBean.getGroup().getBuryCount());
+//            设置踩次数
+            jokeHolder.likeShareBar.setDislikeCount(dataBean.getGroup().getDiggCount());
+//            设置分享次数
+            jokeHolder.likeShareBar.setShareCount(dataBean.getGroup().getShareCount());
         }
     }
 
     @Override
     public int getItemCount() {
         return neiHanBeans.size();
+    }
+
+    @Override
+    public void onClick(View view, int amount) {
+
     }
 }

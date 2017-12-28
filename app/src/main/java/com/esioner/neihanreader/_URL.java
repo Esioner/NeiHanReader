@@ -68,27 +68,73 @@ public class _URL {
 
     public static Map<String, String> getJokeParameter() {
         Map<String, String> map = new HashMap<>();
+        map.put("mpic", "1");
+        map.put("webp", "1");
         map.put("essence", "1");
+        //新增
+        map.put("video_cdn_first", "1");
+
+        map.put("content_type", "-102");
+        map.put("message_cursor", "-1");
+        //新增
+        map.put("longitude", "103.999987");
+        map.put("latitude", "30.000014");
+
+        map.put("am_longitude", "");
+        map.put("am_latitude", "");
+        map.put("am_city", "上海");
+        map.put("am_loc_time", getUnixTime() + "");
+        map.put("count", "20");
+        map.put("min_time", (getUnixTime() - 1000) + "");
+        map.put("screen_width", getScreenWidth() + "");
+        map.put("double_col_mode", "0");
+
+        //新增
+        map.put("enable_image_comment", "1");
+        map.put("local_request_tag", "1514441532602");
+
         map.put("iid", SPUtils.getString("iid"));
         map.put("device_id", getDeviceId());
         map.put("ac", "wifi");
         map.put("channel", "360");
         map.put("aid", "7");
         map.put("app_name", "joke_essay");
+        //软件版本去小数点670
         map.put("versionCode", removePoint(getVersionCode()));
+//        软件版本不去小数点
         map.put("version_name", getVersionCode());
+
         map.put("device_platform", "android");
+
         map.put("ssmix", "a");
+        //ONEPLUS+A3000
         map.put("device_type", "getDeviceModel()");
+        //OnePlus
         map.put("device_brand", "getManufacturer()");
+//26
         map.put("os_api", "getOSCode()");
+//      8.0.0
         map.put("os_version", getVersionCode());
+
         map.put("uuid", SPUtils.getString("uuid"));
         map.put("openudid", SPUtils.getString("openudid"));
+        //软件版本670
         map.put("manifest_version_code", removePoint(getVersionCode()));
+//1080*1920
         map.put("resolution", getScreenHeight() + "*" + getScreenWidth());
+
         map.put("dpi", getScreenDPI() + "");
+//        6703
         map.put("update_version_code", removePoint(getVersionCode()) + "0");
+//        13位随机数字
+//_rticket=1514441532601
+        map.put("_rticket", "1514441532601");
+// ts=1514441534
+        map.put("ts", "1514441534");
+        //   as=a23558243e734a1b44
+        map.put("as", "a23558243e734a1b44");
+//        cp=833da75de9424cb5e2
+        map.put("cp", "833da75de9424cb5e2");
         return map;
     }
 
