@@ -128,13 +128,13 @@ public class _URL {
         map.put("update_version_code", removePoint(getVersionCode()) + "0");
 //        13位随机数字
 //_rticket=1514441532601
-        map.put("_rticket", "1514441532601");
+//        map.put("_rticket", "1514441532601");
 // ts=1514441534
-        map.put("ts", "1514441534");
+//        map.put("ts", "1514441534");
         //   as=a23558243e734a1b44
-        map.put("as", "a23558243e734a1b44");
+//        map.put("as", "a23558243e734a1b44");
 //        cp=833da75de9424cb5e2
-        map.put("cp", "833da75de9424cb5e2");
+//        map.put("cp", "833da75de9424cb5e2");
         return map;
     }
 

@@ -6,9 +6,12 @@ import java.util.List;
 
 
 public class NeiHanDataBean {
-    //评论
+    /**
+     * 神评
+     */
     private List<?> comments;
-    private NeiHanGroupBean group;
+    @SerializedName("group")
+    private NeiHanGroupData groupData;
     private int type;
     @SerializedName("display_time")
     private float displayTime;
@@ -23,12 +26,12 @@ public class NeiHanDataBean {
         this.comments = comments;
     }
 
-    public NeiHanGroupBean getGroup() {
-        return group;
+    public NeiHanGroupData getGroupData() {
+        return groupData;
     }
 
-    public void setGroup(NeiHanGroupBean group) {
-        this.group = group;
+    public void setGroupData(NeiHanGroupData groupData) {
+        this.groupData = groupData;
     }
 
     public int getType() {

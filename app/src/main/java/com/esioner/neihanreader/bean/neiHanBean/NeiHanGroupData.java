@@ -3,7 +3,7 @@ package com.esioner.neihanreader.bean.neiHanBean;
 import com.google.gson.annotations.SerializedName;
 
 
-public class NeiHanGroupBean {
+public class NeiHanGroupData {
     //num
     public NeiHanVideoBean video$360;
     public NeiHanVideoBean video$480;
@@ -13,7 +13,7 @@ public class NeiHanGroupBean {
     @SerializedName("allow_dislike")
     private boolean allowDislike;
     //B
-    //不顶次数
+    //顶次数
     @SerializedName("bury_count")
     private int buryCount;
     //C

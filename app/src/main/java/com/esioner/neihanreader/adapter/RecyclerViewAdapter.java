@@ -9,9 +9,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.esioner.neihanreader.MyApplication;
 import com.esioner.neihanreader.R;
-import com.esioner.neihanreader.bean.neiHanBean.NeiHanBean;
 import com.esioner.neihanreader.bean.neiHanBean.NeiHanDataBean;
-import com.esioner.neihanreader.bean.neiHanBean.NeiHanGroupBean;
 import com.esioner.neihanreader.view.LikeShareView;
 
 import java.util.List;
@@ -62,18 +60,20 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         if (holder instanceof JokeViewHolder) {
             JokeViewHolder jokeHolder = (JokeViewHolder) holder;
             //设置用户头像
-            Glide.with(MyApplication.getContext()).load(dataBean.getGroup().getUserInfo().getAvatarUrl()).into(jokeHolder.ivAuthorHeader);
+            Glide.with(MyApplication.getContext()).load(dataBean.getGroupData().getUserInfo().getAvatarUrl()).into(jokeHolder.ivAuthorHeader);
             //设置用户名
-            jokeHolder.tvAuthorName.setText(dataBean.getGroup().getUserInfo().getName());
+            jokeHolder.tvAuthorName.setText(dataBean.getGroupData().getUserInfo().getName());
 //            设置用户内容
-            jokeHolder.tvAuthorContent.setText(dataBean.getGroup().getText());
+            jokeHolder.tvAuthorContent.setText(dataBean.getGroupData().getText());
 //            设置顶数
-            jokeHolder.likeShareBar.setLikeCount(dataBean.getGroup().getBuryCount());
+            jokeHolder.likeShareBar.setLikeCount(dataBean.getGroupData().getBuryCount());
 //            设置踩次数
-            jokeHolder.likeShareBar.setDislikeCount(dataBean.getGroup().getDiggCount());
+            jokeHolder.likeShareBar.setDislikeCount(dataBean.getGroupData().getDiggCount());
 //            设置分享次数
-            jokeHolder.likeShareBar.setShareCount(dataBean.getGroup().getShareCount());
+            jokeHolder.likeShareBar.setShareCount(dataBean.getGroupData().getShareCount());
         }
+
+
     }
 
     @Override

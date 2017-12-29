@@ -1,14 +1,16 @@
 package com.esioner.neihanreader.bean.neiHanBean;
 
 
+import com.google.gson.annotations.SerializedName;
+
 public class NeiHanBean {
 
     /**
      * 成功时为 success
      */
     private String message;
-
-    private NeiHanRootDataBean data;
+    @SerializedName("data")
+    private NeiHanRootData neiHanRootData;
 
     public String getMessage() {
         return message;
@@ -18,11 +20,19 @@ public class NeiHanBean {
         this.message = message;
     }
 
-    public NeiHanRootDataBean getData() {
-        return data;
+    public NeiHanRootData getNeiHanRootData() {
+        return neiHanRootData;
     }
 
-    public void setData(NeiHanRootDataBean data) {
-        this.data = data;
+    public void setNeiHanRootData(NeiHanRootData neiHanRootData) {
+        this.neiHanRootData = neiHanRootData;
+    }
+
+    @Override
+    public String toString() {
+        return "NeiHanBean{" +
+                "message='" + message + '\'' +
+                ", neiHanRootData=" + neiHanRootData +
+                '}';
     }
 }
