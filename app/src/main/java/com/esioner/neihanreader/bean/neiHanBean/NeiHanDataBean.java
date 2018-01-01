@@ -9,7 +9,7 @@ public class NeiHanDataBean {
     /**
      * 神评
      */
-    private List<?> comments;
+    private List<NeiHanCommentsBean> comments;
     @SerializedName("group")
     private NeiHanGroupData groupData;
     private int type;
@@ -18,11 +18,11 @@ public class NeiHanDataBean {
     @SerializedName("online_time")
     private float onlineTime;
 
-    public List<?> getComments() {
+    public List<NeiHanCommentsBean> getComments() {
         return comments;
     }
 
-    public void setComments(List<?> comments) {
+    public void setComments(List<NeiHanCommentsBean> comments) {
         this.comments = comments;
     }
 

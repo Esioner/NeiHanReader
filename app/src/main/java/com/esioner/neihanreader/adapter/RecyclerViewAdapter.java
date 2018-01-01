@@ -5,11 +5,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.esioner.neihanreader.MyApplication;
 import com.esioner.neihanreader.R;
+import com.esioner.neihanreader.bean.neiHanBean.NeiHanCommentsBean;
 import com.esioner.neihanreader.bean.neiHanBean.NeiHanDataBean;
+import com.esioner.neihanreader.view.CommentView;
 import com.esioner.neihanreader.view.LikeShareView;
 
 import java.util.List;
@@ -37,6 +40,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         private TextView tvAuthorName;
         private TextView tvAuthorContent;
         private final LikeShareView likeShareBar;
+        private CommentView commentView;
 
         public JokeViewHolder(View itemView) {
             super(itemView);
@@ -44,6 +48,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             tvAuthorName = itemView.findViewById(R.id.tv_joke_author_name);
             tvAuthorContent = itemView.findViewById(R.id.tv_joke_author_content);
             likeShareBar = itemView.findViewById(R.id.like_share_bar);
+            commentView = itemView.findViewById(R.id.comment_view_joke_item);
         }
     }
 
@@ -66,14 +71,25 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 //            设置用户内容
             jokeHolder.tvAuthorContent.setText(dataBean.getGroupData().getText());
 //            设置顶数
-            jokeHolder.likeShareBar.setLikeCount(dataBean.getGroupData().getBuryCount());
+            jokeHolder.likeShareBar.setBuryCount(dataBean.getGroupData().getBuryCount());
 //            设置踩次数
-            jokeHolder.likeShareBar.setDislikeCount(dataBean.getGroupData().getDiggCount());
+            jokeHolder.likeShareBar.setDiggCount(dataBean.getGroupData().getDiggCount());
 //            设置分享次数
             jokeHolder.likeShareBar.setShareCount(dataBean.getGroupData().getShareCount());
+            jokeHolder.likeShareBar.setViewListener(this);
+
+            List<NeiHanCommentsBean> comments = dataBean.getComments();
+            if (comments.size() > 0) {
+                jokeHolder.commentView.setVisibility(View.VISIBLE);
+                jokeHolder.commentView.setGodComment(true);
+                jokeHolder.commentView.setUserComment(comments.get(0).getText());
+                jokeHolder.commentView.setUserName(comments.get(0).getUserName());
+                jokeHolder.commentView.setUserDiggCount(comments.get(0).getDiggCount() + "");
+                Glide.with(MyApplication.getContext()).load(comments.get(0).getAvatarUrl()).into(jokeHolder.commentView.getImageView());
+            } else {
+                jokeHolder.commentView.setVisibility(View.GONE);
+            }
         }
-
-
     }
 
     @Override
@@ -81,8 +97,20 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         return neiHanBeans.size();
     }
 
-    @Override
-    public void onClick(View view, int amount) {
 
+    @Override
+    public void onBuryClick(View view, int amount) {
+        Toast.makeText(MyApplication.getContext(), "点赞", Toast.LENGTH_SHORT).show();
+
+    }
+
+    @Override
+    public void onDiggClick(View view, int amount) {
+        Toast.makeText(MyApplication.getContext(), "点踩", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onShareClick(View view, int amount) {
+        Toast.makeText(MyApplication.getContext(), "分享", Toast.LENGTH_SHORT).show();
     }
 }

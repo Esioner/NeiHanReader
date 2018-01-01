@@ -3,52 +3,64 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:paddingBottom="5dp"
+    android:paddingTop="5dp"
     app:cardBackgroundColor="#EAEAEA">
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout
+        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="5dp"
-        android:background="@android:color/white"
-        android:paddingLeft="12dp"
-        android:paddingRight="12dp"
-        android:paddingTop="5dp">
+        android:layout_height="match_parent">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/iv_joke_author_header_image"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@mipmap/ic_launcher_round" />
-
-        <TextView
-            android:id="@+id/tv_joke_author_name"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_above="@id/tv_joke_author_content"
-            android:layout_marginLeft="8dp"
-            android:layout_toRightOf="@+id/iv_joke_author_header_image"
-            android:gravity="center_vertical"
-            android:text="我是名字真的很长"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/tv_joke_author_content"
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/rr"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/iv_joke_author_header_image"
-            android:layout_marginTop="4dp"
-            android:text="我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容"
-            android:textSize="16sp" />
+            android:background="@android:color/white"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp">
 
-        <com.esioner.neihanreader.view.LikeShareView
-            xmlns:app="http://schemas.android.com/apk/res-auto"
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/iv_joke_author_header_image"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@mipmap/ic_launcher_round" />
+
+            <TextView
+                android:id="@+id/tv_joke_author_name"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_above="@id/tv_joke_author_content"
+                android:layout_marginLeft="8dp"
+                android:layout_toRightOf="@+id/iv_joke_author_header_image"
+                android:gravity="center_vertical"
+                android:text="我是名字真的很长"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tv_joke_author_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/iv_joke_author_header_image"
+                android:layout_marginTop="4dp"
+                android:text="我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容"
+                android:textSize="16sp" />
+        </RelativeLayout>
+
+        <com.esioner.neihanreader.view.CommentView
+            android:id="@+id/comment_view_joke_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="6dp"
+            android:layout_below="@id/rr" />
+
+        <com.esioner.neihanreader.view.LikeShareView xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/like_share_bar"
             android:layout_width="match_parent"
             android:layout_height="25dp"
-            android:layout_alignParentBottom="true"
-            android:layout_below="@id/tv_joke_author_content"
-            android:layout_marginTop="5dp" />
+            android:layout_below="@id/comment_view_joke_item"
+            />
     </RelativeLayout>
 
 </android.support.v7.widget.CardView>

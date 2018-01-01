@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
+    android:background="@android:color/white"
+    android:paddingLeft="12dp"
+    android:paddingRight="12dp"
     android:layout_height="wrap_content">
 
     <RadioGroup
@@ -11,10 +14,10 @@
         android:orientation="horizontal">
 
         <RadioButton
-            android:id="@+id/rb_like"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
-            android:background="@drawable/neihan_selector_like"
+            android:id="@+id/rb_bury"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/neihan_selector_digg"
             android:button="@null"
             android:gravity="center" />
 
@@ -29,10 +32,10 @@
 
         <RadioButton
             android:id="@+id/rb_dislike"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginLeft="20dp"
-            android:background="@drawable/neihan_selector_dislike"
+            android:background="@drawable/neihan_selector_bury"
             android:button="@null"
             android:gravity="center" />
 
@@ -60,7 +63,7 @@
             android:layout_width="15dp"
             android:layout_height="15dp"
             android:layout_marginRight="5dp"
-            android:background="@drawable/neihan_selector_share" />
+            android:background="@drawable/share_normal" />
 
         <TextView
             android:id="@+id/tv_share_count"

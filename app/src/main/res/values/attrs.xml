@@ -4,5 +4,6 @@
         <attr name="textSize" format="dimension" />
         <attr name="btnSize" format="dimension" />
     </declare-styleable>
-
+    <declare-styleable name="CommentView">
+    </declare-styleable>
 </resources>

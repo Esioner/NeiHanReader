@@ -82,8 +82,6 @@ public class JokeFragment extends BaseFragment implements BaseFragment.ConnectSt
         }
         Log.d(TAG, "showData: " + allNeiHanDatas.size());
     }
-
-
     /**
      * 加载成功回调返回数据
      *

@@ -41,7 +41,6 @@ public abstract class BaseFragment extends Fragment {
     protected NeiHanBean neiHanBean;
     private Retrofit retrofit;
     private Service service;
-    private boolean isFirst = true;
     private ConnectStatus status;
     protected SmartRefreshLayout smartRefreshLayout;
     protected static final int IS_REFRESH = 0;
@@ -89,6 +88,7 @@ public abstract class BaseFragment extends Fragment {
                     public void onCompleted() {
 
                     }
+
                     @Override
                     public void onError(Throwable e) {
                         status.error(e);

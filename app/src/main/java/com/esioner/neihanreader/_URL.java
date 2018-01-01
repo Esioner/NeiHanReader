@@ -108,24 +108,26 @@ public class _URL {
 
         map.put("ssmix", "a");
         //ONEPLUS+A3000
-        map.put("device_type", "getDeviceModel()");
+        map.put("device_type", "ONEPLUS+A3000");
         //OnePlus
-        map.put("device_brand", "getManufacturer()");
+        map.put("device_brand", "OnePlus");
 //26
-        map.put("os_api", "getOSCode()");
+        map.put("os_api", "26");
 //      8.0.0
         map.put("os_version", getVersionCode());
 
         map.put("uuid", SPUtils.getString("uuid"));
         map.put("openudid", SPUtils.getString("openudid"));
         //软件版本670
-        map.put("manifest_version_code", removePoint(getVersionCode()));
+//        map.put("manifest_version_code", removePoint(getVersionCode()));
+        map.put("manifest_version_code", "670");
 //1080*1920
         map.put("resolution", getScreenHeight() + "*" + getScreenWidth());
 
         map.put("dpi", getScreenDPI() + "");
 //        6703
-        map.put("update_version_code", removePoint(getVersionCode()) + "0");
+//        map.put("update_version_code", removePoint(getVersionCode()) + "0");
+        map.put("update_version_code", "6703");
 //        13位随机数字
 //_rticket=1514441532601
 //        map.put("_rticket", "1514441532601");

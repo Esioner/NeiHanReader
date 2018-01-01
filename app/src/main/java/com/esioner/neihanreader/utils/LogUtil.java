@@ -21,7 +21,6 @@ public class LogUtil {
             Log.v(Tag, msg);
         }
     }
-
     public static void d(String Tag, String msg) {
         if (LOGTYPE <= DEBUG) {
             if (Tag.equals("")) {
@@ -30,7 +29,6 @@ public class LogUtil {
             Log.d(Tag, msg);
         }
     }
-
     public static void i(String Tag, String msg) {
         if (LOGTYPE <= INFO) {
             if (Tag.equals("")) {
@@ -39,7 +37,6 @@ public class LogUtil {
             Log.i(Tag, msg);
         }
     }
-
     public static void w(String Tag, String msg) {
         if (LOGTYPE <= WARM) {
             if (Tag.equals("")) {
@@ -48,7 +45,6 @@ public class LogUtil {
             Log.w(Tag, msg);
         }
     }
-
     public static void e(String Tag, String msg) {
         if (LOGTYPE <= ERROR) {
             if (Tag.equals("")) {
@@ -57,5 +53,4 @@ public class LogUtil {
             Log.e(Tag, msg);
         }
     }
-
 }
