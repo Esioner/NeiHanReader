@@ -140,6 +140,70 @@ public class _URL {
         return map;
     }
 
+    public static Map<String, String> diggMap() {
+        Map<String, String> map = new HashMap<>();
+        map.put("manifest_version_code", "670");
+        map.put("_rticket", "");
+        map.put("ac", "wifi");
+        map.put("device_id", getDeviceId());
+        map.put("iid", SPUtils.getString("iid"));
+        map.put("os_version", "8.0.0");
+        map.put("channel", "oppo-cpa");
+        map.put("version_code", "670");
+        map.put("device_type", "ONEPLUS A3000");
+        map.put("language", "zh");
+        map.put("uuid", SPUtils.getString("uuid"));
+        map.put("resolution", "1080*1920");
+        map.put("openudid", SPUtils.getString("openudid"));
+        map.put("update_version_code", "6703");
+        map.put("app_name", "joke_essay");
+        map.put("version_name", "6.7.0");
+        map.put("os_api", "26");
+        map.put("device_brand", "OnePlus");
+        map.put("ssmix", "a");
+        map.put("device_platform", "android");
+        map.put("dpi", "420");
+        map.put("aid", "7");
+        map.put("ts", "");
+//        map.put("ts","1514886613");
+        map.put("as", "");
+//        map.put("as","a27515f495bd9a15cb");
+//        map.put("cp","59dea45557bd4f59e2");
+        map.put("cp", "");
+        return map;
+    }
+
+    public static Map<String, String> diggHeaderMap(int refer, long itemId, long groupId, String action) {
+        Map<String, String> map = new HashMap<>();
+        map.put("version_name", "6.7.0");
+        map.put("version_code", "670");
+        map.put("uuid", SPUtils.getString("uuid"));
+        map.put("update_version_code", "6703");
+        map.put("ssmix", "a");
+        map.put("resolution", "1080*1920");
+        map.put("refer", refer + "");
+        map.put("os_version", "8.0.0");
+        map.put("os_api", "26");
+        map.put("openudid", SPUtils.getString("openudid"));
+        map.put("manifest_version_code", "670");
+        map.put("language", "zh");
+        map.put("item_id", itemId + "");
+        map.put("iid", SPUtils.getString("iid"));
+        map.put("group_id", groupId + "");
+        map.put("dpi", "420");
+        map.put("device_type", "ONEPLUS A3000");
+        map.put("device_platform", "android");
+        map.put("device_id", "43075228107");
+        map.put("device_brand", "OnePlus");
+        map.put("channel", "360");
+        map.put("app_name", "joke_essay");
+        map.put("aid", "7");
+        map.put("action", action);
+        map.put("ac", "wifi");
+        map.put("_rticket", "");
+        return map;
+    }
+
     /**
      * 获取段子拼接参数
      *

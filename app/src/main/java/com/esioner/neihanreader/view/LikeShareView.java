@@ -6,6 +6,8 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -13,18 +15,19 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.esioner.neihanreader.R;
+import com.esioner.neihanreader.bean.neiHanBean.NeiHanDataBean;
 
 /**
  * @author Esioner
  * @date 2017/12/28
  */
 
-public class LikeShareView extends LinearLayout implements View.OnClickListener {
+public class LikeShareView extends LinearLayout implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
 
     private RadioGroup radioGroup;
-    private RadioButton rbBury;
-    private TextView tvBuryCount;
     private RadioButton rbDigg;
+    private TextView tvBuryCount;
+    private RadioButton rbBury;
     private TextView tvDiggCount;
     private LinearLayout llShare;
     private TextView tvShareCount;
@@ -42,6 +45,8 @@ public class LikeShareView extends LinearLayout implements View.OnClickListener 
     private int shareCount = 0;
 
     private ViewOnClickListener viewListener;
+    private ImageButton ibComment;
+    private CheckBox cbCollect;
 
 
     public LikeShareView(Context context) {
@@ -56,17 +61,21 @@ public class LikeShareView extends LinearLayout implements View.OnClickListener 
         super(context, attrs, defStyleAttr);
         LayoutInflater.from(getContext()).inflate(R.layout.neihan_common_bar, this);
         radioGroup = findViewById(R.id.rg);
-        rbBury = findViewById(R.id.rb_bury);
+        rbDigg = findViewById(R.id.rb_digg);
         tvBuryCount = findViewById(R.id.tv_like_count);
-        rbDigg = findViewById(R.id.rb_dislike);
+        rbBury = findViewById(R.id.rb_bury);
         tvDiggCount = findViewById(R.id.tv_dislike_count);
         llShare = findViewById(R.id.ll_share);
         ibShare = findViewById(R.id.ib_share);
         tvShareCount = findViewById(R.id.tv_share_count);
+        ibComment = findViewById(R.id.ib_comment);
+        cbCollect = findViewById(R.id.ib_collect);
 
-        rbBury.setOnClickListener(this);
         rbDigg.setOnClickListener(this);
+        rbBury.setOnClickListener(this);
         llShare.setOnClickListener(this);
+        ibComment.setOnClickListener(this);
+        cbCollect.setOnCheckedChangeListener(this);
 
         TypedArray obtainAttrs = getContext().obtainStyledAttributes(attrs, R.styleable.LikeShareView);
         int btnSize = obtainAttrs.getDimensionPixelSize(R.styleable.LikeShareView_btnSize, 0);
@@ -75,7 +84,7 @@ public class LikeShareView extends LinearLayout implements View.OnClickListener 
 
 //        LayoutParams btnParms = new LayoutParams(btnSize, btnSize);
 //        rbDigg.setLayoutParams(btnParms);
-//        rbBury.setLayoutParams(btnParms);
+//        rbDigg.setLayoutParams(btnParms);
 //        ibShare.setLayoutParams(btnParms);
 //
 //        LayoutParams textParams = new LayoutParams(tvSize, tvSize);
@@ -95,29 +104,37 @@ public class LikeShareView extends LinearLayout implements View.OnClickListener 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.rb_digg:
+                //判断是否是第一次点击，如果是执行回调函数，即是否已赞过或者已踩过
+                if (isFirst) {
+                    isFirst = false;
+                    viewListener.onDiggClick(tvBuryCount, buryCount,null);
+                } else {
+                    radioGroup.setEnabled(false);
+                }
+                break;
             case R.id.rb_bury:
                 //判断是否是第一次点击，如果是执行回调函数，即是否已赞过或者已踩过
                 if (isFirst) {
                     isFirst = false;
-                    viewListener.onBuryClick(tvBuryCount, buryCount);
+                    viewListener.onBuryClick(tvDiggCount, diggCount );
                 } else {
-                    rbBury.setEnabled(false);
-                }
-                break;
-            case R.id.rb_dislike:
-                //判断是否是第一次点击，如果是执行回调函数，即是否已赞过或者已踩过
-                if (isFirst) {
-                    isFirst = false;
-                    viewListener.onDiggClick(tvDiggCount, diggCount);
-                } else {
-                    rbBury.setEnabled(false);
+                    radioGroup.setEnabled(false);
                 }
                 break;
             case R.id.ll_share:
                 viewListener.onShareClick(tvShareCount, shareCount);
                 break;
+            case R.id.ib_comment:
+                viewListener.onCommentClick(ibComment);
+                break;
             default:
         }
+    }
+
+    @Override
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        viewListener.onCheckChange(buttonView, isChecked);
     }
 
     public int getBuryCount() {
@@ -148,6 +165,7 @@ public class LikeShareView extends LinearLayout implements View.OnClickListener 
         this.viewListener = viewListener;
     }
 
+
     public interface ViewOnClickListener {
         /**
          * 改变 text 的内容
@@ -157,8 +175,12 @@ public class LikeShareView extends LinearLayout implements View.OnClickListener 
          */
         void onBuryClick(View view, int amount);
 
-        void onDiggClick(View view, int amount);
+        void onDiggClick(View view, int amount, NeiHanDataBean neiHanDataBean);
 
         void onShareClick(View view, int amount);
+
+        void onCommentClick(View view);
+
+        void onCheckChange(View view, boolean isChecked);
     }
 }

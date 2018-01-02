@@ -17,6 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/white"
+            android:paddingTop="5dp"
             android:paddingLeft="12dp"
             android:paddingRight="12dp">
 
@@ -43,8 +44,9 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_below="@+id/iv_joke_author_header_image"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="5dp"
                 android:text="我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容"
+                android:layout_marginBottom="5dp"
                 android:textSize="16sp" />
         </RelativeLayout>
 
@@ -52,7 +54,8 @@
             android:id="@+id/comment_view_joke_item"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="6dp"
+            android:paddingLeft="6dp"
+            android:paddingRight="6dp"
             android:layout_below="@id/rr" />
 
         <com.esioner.neihanreader.view.LikeShareView xmlns:app="http://schemas.android.com/apk/res-auto"

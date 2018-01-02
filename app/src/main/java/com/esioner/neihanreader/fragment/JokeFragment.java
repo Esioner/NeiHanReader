@@ -27,12 +27,13 @@ import java.util.List;
  */
 
 public class JokeFragment extends BaseFragment implements BaseFragment.ConnectStatus {
-    private static final String TAG = "S";
+    private static final String TAG = "JokeFragment";
     private RecyclerView rvJokeFragment;
     private ConnectStatus status;
     private RecyclerViewAdapter adapter;
     private List<NeiHanDataBean> neiHanDatas = new ArrayList<>();
     private List<NeiHanDataBean> allNeiHanDatas = new ArrayList<>();
+    private boolean isFirst = true;
 
 
     @Nullable
@@ -61,11 +62,17 @@ public class JokeFragment extends BaseFragment implements BaseFragment.ConnectSt
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        setConnectStatus(this);
+
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
         /**
          * 开始加载数据
          */
-        getDate(_URL.getJokeParameter(), IS_REFRESH);
-        setConnectStatus(this);
+//        getDate(_URL.getJokeParameter(), IS_REFRESH);
     }
 
     /**
@@ -82,6 +89,7 @@ public class JokeFragment extends BaseFragment implements BaseFragment.ConnectSt
         }
         Log.d(TAG, "showData: " + allNeiHanDatas.size());
     }
+
     /**
      * 加载成功回调返回数据
      *
@@ -96,7 +104,6 @@ public class JokeFragment extends BaseFragment implements BaseFragment.ConnectSt
          */
         showData();
     }
-
     /**
      * 加载失败，回调返回数据
      *
@@ -105,5 +112,13 @@ public class JokeFragment extends BaseFragment implements BaseFragment.ConnectSt
     @Override
     public void error(Throwable error) {
         Log.e(TAG, "error: " + error.toString());
+    }
+
+    @Override
+    protected void lazyLoad() {
+        if (isFirst) {
+            isFirst = false;
+            smartRefreshLayout.autoRefresh();
+        }
     }
 }

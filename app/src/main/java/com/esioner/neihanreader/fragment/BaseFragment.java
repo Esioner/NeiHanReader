@@ -43,6 +43,7 @@ public abstract class BaseFragment extends Fragment {
     private Service service;
     private ConnectStatus status;
     protected SmartRefreshLayout smartRefreshLayout;
+    private boolean isVisible = false;
     protected static final int IS_REFRESH = 0;
     protected static final int IS_LOADING_MORE = 1;
 
@@ -118,7 +119,6 @@ public abstract class BaseFragment extends Fragment {
         }
 
     }
-
     public void setConnectStatus(ConnectStatus status) {
         this.status = status;
     }
@@ -146,4 +146,21 @@ public abstract class BaseFragment extends Fragment {
          */
         void error(Throwable error);
     }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (getUserVisibleHint()) {
+            isVisible = true;
+            onVisible();
+        } else {
+            isVisible = false;
+        }
+    }
+
+    protected void onVisible() {
+        lazyLoad();
+    }
+
+    protected abstract void lazyLoad();
 }

@@ -1,6 +1,7 @@
 package com.esioner.neihanreader.adapter;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,14 +11,23 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.esioner.neihanreader.MyApplication;
 import com.esioner.neihanreader.R;
+import com.esioner.neihanreader.Service;
+import com.esioner.neihanreader._URL;
 import com.esioner.neihanreader.bean.neiHanBean.NeiHanCommentsBean;
 import com.esioner.neihanreader.bean.neiHanBean.NeiHanDataBean;
 import com.esioner.neihanreader.view.CommentView;
 import com.esioner.neihanreader.view.LikeShareView;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.Observable;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 /**
  * @author Esioner
@@ -61,7 +71,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        NeiHanDataBean dataBean = neiHanBeans.get(position);
+        final NeiHanDataBean dataBean = neiHanBeans.get(position);
         if (holder instanceof JokeViewHolder) {
             JokeViewHolder jokeHolder = (JokeViewHolder) holder;
             //设置用户头像
@@ -76,7 +86,52 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             jokeHolder.likeShareBar.setDiggCount(dataBean.getGroupData().getDiggCount());
 //            设置分享次数
             jokeHolder.likeShareBar.setShareCount(dataBean.getGroupData().getShareCount());
-            jokeHolder.likeShareBar.setViewListener(this);
+            jokeHolder.likeShareBar.setViewListener(new LikeShareView.ViewOnClickListener() {
+                @Override
+                public void onBuryClick(View view, int amount) {
+
+                }
+
+                @Override
+                public void onDiggClick(View view, int amount, NeiHanDataBean neiHanDataBean) {
+                    Toast.makeText(MyApplication.getContext(), "点赞", Toast.LENGTH_SHORT).show();
+                    Retrofit retrofit = new Retrofit.Builder().baseUrl("http://iu.snssdk.com/").build();
+                    Service service = retrofit.create(Service.class);
+                    Call<ResponseBody> call = service.post(_URL.diggMap(), _URL.diggHeaderMap(0, dataBean.getGroupData().getGroupId(), dataBean.getGroupData().getGroupId(), "digg"));
+                    call.enqueue(new Callback<ResponseBody>() {
+                        @Override
+                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                            try {
+                                Log.d("DIGGGGG", "onResponse: " + response.body().string());
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+
+
+                        }
+
+                        @Override
+                        public void onFailure(Call<ResponseBody> call, Throwable t) {
+                            Log.e("DIGGGGG", "onFailure: " + t.toString());
+                        }
+                    });
+                }
+
+                @Override
+                public void onShareClick(View view, int amount) {
+
+                }
+
+                @Override
+                public void onCommentClick(View view) {
+
+                }
+
+                @Override
+                public void onCheckChange(View view, boolean isChecked) {
+
+                }
+            });
 
             List<NeiHanCommentsBean> comments = dataBean.getComments();
             if (comments.size() > 0) {
@@ -100,17 +155,32 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     @Override
     public void onBuryClick(View view, int amount) {
-        Toast.makeText(MyApplication.getContext(), "点赞", Toast.LENGTH_SHORT).show();
+        Toast.makeText(MyApplication.getContext(), "点踩", Toast.LENGTH_SHORT).show();
 
     }
 
     @Override
-    public void onDiggClick(View view, int amount) {
-        Toast.makeText(MyApplication.getContext(), "点踩", Toast.LENGTH_SHORT).show();
+    public void onDiggClick(View view, int amount, NeiHanDataBean neiHanDataBean) {
+        Toast.makeText(MyApplication.getContext(), "点赞", Toast.LENGTH_SHORT).show();
+//        service.post();
     }
 
     @Override
     public void onShareClick(View view, int amount) {
         Toast.makeText(MyApplication.getContext(), "分享", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onCommentClick(View view) {
+        Toast.makeText(MyApplication.getContext(), "评论", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onCheckChange(View view, boolean isChecked) {
+        if (isChecked) {
+            Toast.makeText(MyApplication.getContext(), "喜欢", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(MyApplication.getContext(), "不喜欢", Toast.LENGTH_SHORT).show();
+        }
     }
 }

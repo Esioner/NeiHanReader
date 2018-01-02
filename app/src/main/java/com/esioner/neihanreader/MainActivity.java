@@ -74,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
         mTabMovie = tabLayout.getTabAt(3);
 
         tabLayout.setupWithViewPager(viewPager);
+        viewPager.setOffscreenPageLimit(4);
     }
 
 }
