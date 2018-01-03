@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
  * @date 2018/1/2
  */
 
-public class DiggBean {
+public class ActionBean {
     /**
      * {
      * "action_exist": "digg",
@@ -31,7 +31,7 @@ public class DiggBean {
     @SerializedName("comment_count")
     private int commentCount;
     @SerializedName("group_id")
-    private int groupId;
+    private long groupId;
     @SerializedName("message")
     private String message;
     @SerializedName("repin_count")
@@ -73,11 +73,11 @@ public class DiggBean {
         this.commentCount = commentCount;
     }
 
-    public int getGroupId() {
+    public long getGroupId() {
         return groupId;
     }
 
-    public void setGroupId(int groupId) {
+    public void setGroupId(long groupId) {
         this.groupId = groupId;
     }
 

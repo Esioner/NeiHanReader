@@ -41,7 +41,7 @@ public class CommonUtils {
     /**
      * 获取手机制造商
      */
-    public  String getManufacturer() {
+    public String getManufacturer() {
         LogUtil.d("Manufacturer", Build.MANUFACTURER);
         return Build.MANUFACTURER;
     }
@@ -49,7 +49,7 @@ public class CommonUtils {
     /**
      * 获取当前 Unix 时间戳
      */
-    public  long getUnixTime() {
+    public long getUnixTime() {
         LogUtil.d("UnixTime", (System.currentTimeMillis()) + "");
         return (System.currentTimeMillis());
     }
@@ -89,7 +89,7 @@ public class CommonUtils {
     /**
      * 返回版本号
      */
-    public  String getVersionCode() {
+    public String getVersionCode() {
         LogUtil.d("getVersionCode", Build.VERSION.RELEASE);
         return Build.VERSION.RELEASE;
     }

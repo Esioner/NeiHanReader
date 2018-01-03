@@ -83,6 +83,7 @@ public class JokeFragment extends BaseFragment implements BaseFragment.ConnectSt
             adapter = new RecyclerViewAdapter(allNeiHanDatas);
             LinearLayoutManager manager = new LinearLayoutManager(getContext());
             rvJokeFragment.setLayoutManager(manager);
+            adapter.setActivity(getActivity());
             rvJokeFragment.setAdapter(adapter);
         } else {
             adapter.notifyDataSetChanged();
@@ -104,6 +105,7 @@ public class JokeFragment extends BaseFragment implements BaseFragment.ConnectSt
          */
         showData();
     }
+
     /**
      * 加载失败，回调返回数据
      *

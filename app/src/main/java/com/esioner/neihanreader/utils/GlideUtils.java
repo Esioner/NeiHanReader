@@ -5,5 +5,4 @@ package com.esioner.neihanreader.utils;
  */
 
 public class GlideUtils {
-
 }

@@ -36,13 +36,21 @@ public class MyApplication extends Application {
             SPUtils.putString("uuid", uuid);
             LogUtil.d("uuid", uuid);
         }
-        if (SPUtils.getString("openuuid").equals("")) {
+        if (SPUtils.getString("openudid").equals("")) {
             /**
              * 生成 openuuid
              */
-            String openuuid = createRandomChar();
-            SPUtils.putString("openuuid", openuuid);
-            LogUtil.d("openuuid", openuuid);
+            String openudid = createRandomChar();
+            SPUtils.putString("openudid", openudid);
+            LogUtil.d("openudid", openudid);
+        }
+        if (SPUtils.getString("deviceid").equals("")) {
+            /**
+             * 生成 deviceid
+             */
+            String deviceid = createNum(11);
+            SPUtils.putString("deviceid", deviceid);
+            LogUtil.d("deviceid", deviceid);
         }
     }
 

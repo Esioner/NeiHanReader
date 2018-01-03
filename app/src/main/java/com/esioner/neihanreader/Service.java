@@ -1,6 +1,5 @@
 package com.esioner.neihanreader;
 
-import com.esioner.neihanreader.bean.ActionBean.DiggBean;
 import com.esioner.neihanreader.bean.neiHanBean.NeiHanBean;
 
 import java.util.Map;
@@ -12,6 +11,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.QueryMap;
+import retrofit2.http.Url;
 import rx.Observable;
 
 /**

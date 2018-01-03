@@ -16,14 +16,16 @@
 
         <RadioButton
             android:id="@+id/rb_digg"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
             android:background="@drawable/neihan_selector_digg"
             android:button="@null"
-            android:gravity="center" />
+            android:gravity="center"
+            android:scaleX="2"
+            android:scaleY="2" />
 
         <TextView
-            android:id="@+id/tv_like_count"
+            android:id="@+id/tv_digg_count"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginLeft="5dp"
@@ -33,15 +35,17 @@
 
         <RadioButton
             android:id="@+id/rb_bury"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
             android:layout_marginLeft="10dp"
             android:background="@drawable/neihan_selector_bury"
             android:button="@null"
-            android:gravity="center" />
+            android:gravity="center"
+            android:scaleX="2"
+            android:scaleY="2" />
 
         <TextView
-            android:id="@+id/tv_dislike_count"
+            android:id="@+id/tv_bury_count"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginLeft="5dp"
@@ -60,13 +64,23 @@
         android:layout_toRightOf="@id/rg"
         android:background="@drawable/neihan_selector_comment" />
 
+    <TextView
+        android:id="@+id/tv_comment_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@id/ib_comment"
+        android:text="200"
+        android:textSize="12dp" />
+
     <CheckBox
         android:id="@+id/ib_collect"
         android:layout_width="15dp"
         android:layout_height="15dp"
         android:layout_centerVertical="true"
         android:layout_marginLeft="20dp"
-        android:layout_toRightOf="@id/ib_comment"
+        android:layout_toRightOf="@id/tv_comment_count"
         android:background="@drawable/neihan_selector_collect"
         android:button="@null" />
 
